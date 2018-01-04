@@ -1,7 +1,5 @@
 from items import *
 import os
-import sys
-from params import NUMBER_OF_PLAYERS
 
 
 class Game:
