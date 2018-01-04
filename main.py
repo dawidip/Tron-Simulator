@@ -1,5 +1,7 @@
 from items import *
 import os
+import sys
+from params import NUMBER_OF_PLAYERS
 
 
 class Game:
@@ -7,7 +9,8 @@ class Game:
         os.environ[OS_ENVIRON] = "1"
         pygame.init()
         pygame.display.set_caption(GAME_TITLE)
-        self.screen = pygame.display.set_mode((X_APPLICATION_SIZE, Y_APPLICATION_SIZE))
+        self.screen = pygame.display.set_mode(
+            (X_APPLICATION_SIZE, Y_APPLICATION_SIZE))
         self.scores = [0] * NUMBER_OF_PLAYERS
         # Init items.
         self.total_game_time = None
@@ -27,7 +30,8 @@ class Game:
             # Handle events.
             for event in pygame.event.get():
                 # Check quit keys.
-                if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
+                if event.type == QUIT \
+                        or (event.type == KEYDOWN and event.key == K_ESCAPE):
                     pygame.quit()
                     return
 
@@ -82,8 +86,10 @@ class Game:
     def init_items(self):
         self.total_game_time = Timer()
         self.players = init_players()
-        self.crossovers = init_crossovers(self.players, self.scores, self.total_game_time)
-        self.score_points = init_score_points(self.players, self.scores, self.total_game_time)
+        self.crossovers = init_crossovers(self.players, self.scores,
+                                          self.total_game_time)
+        self.score_points = init_score_points(self.players, self.scores,
+                                              self.total_game_time)
 
         self.items = self.players + self.crossovers + self.score_points
         self.drawable = self.players + self.crossovers + self.score_points

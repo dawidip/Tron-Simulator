@@ -39,17 +39,20 @@ FONT_SIZE_2 = 70
 #########################################################
 #                    ITEMS PARAMS                       #
 
-
-NUMBER_OF_PLAYERS = 2
+NUMBER_OF_PLAYERS = 3
 COLOURS = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (148, 0, 211)]
 CONTROLLERS = [[K_UP, K_DOWN, K_LEFT, K_RIGHT],
                [K_w, K_s, K_a, K_d],
                [K_f, K_v, K_c, K_b],
                [K_i, K_k, K_j, K_l]]
-START_POSITIONS = [[normalize(X_BOARD_SIZE / 3), normalize(Y_BOARD_SIZE / 3)],
-                   [normalize(2 * X_BOARD_SIZE / 3), normalize(2 * Y_BOARD_SIZE / 3)],
-                   [normalize(X_BOARD_SIZE / 3), normalize(2 * Y_BOARD_SIZE / 3)],
-                   [normalize(2 * X_BOARD_SIZE / 3), normalize(Y_BOARD_SIZE / 3)]]
+START_POSITIONS = [[normalize(X_BOARD_SIZE / 3),
+                    normalize(Y_BOARD_SIZE / 3)],
+                   [normalize(2 * X_BOARD_SIZE / 3),
+                    normalize(2 * Y_BOARD_SIZE / 3)],
+                   [normalize(X_BOARD_SIZE / 3),
+                    normalize(2 * Y_BOARD_SIZE / 3)],
+                   [normalize(2 * X_BOARD_SIZE / 3),
+                    normalize(Y_BOARD_SIZE / 3)]]
 
 assert (all(position[0] % DOT_SIZE == 0 and position[1] % DOT_SIZE == 0
             for position in START_POSITIONS))
@@ -65,7 +68,7 @@ NUMBER_OF_CROSSOVERS = 2
 CROSSOVER_COLOUR = (192, 192, 192)
 FREQUENCY_CROSSOVER = 2000
 
-NUMBER_OF_SCORE_POINTS = 2
+NUMBER_OF_SCORE_POINTS = 5
 SCORE_POINT_COLOUR = (255, 128, 0)
 FREQUENCY_SCORE_POINT = 6000
 

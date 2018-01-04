@@ -33,7 +33,8 @@ class Drawable:
 
     def draw(self, screen):
         if self.live:
-            screen.fill(self.colour, (self.head[0], self.head[1], DOT_SIZE, DOT_SIZE))
+            screen.fill(self.colour,
+                        (self.head[0], self.head[1], DOT_SIZE, DOT_SIZE))
 
 
 class KeySensitive:
@@ -73,12 +74,13 @@ class ActivePoint(Drawable):
     def update_position(self):
         assert (self.total_time is not None)
 
-        # print(self.total_time.get_time() - self.last_active), self.frequency, self.live
-        if not self.live and self.total_time.get_time() - self.last_active > self.frequency:
+        time_delta = self.total_time.get_time() - self.last_active
+        if not self.live and time_delta > self.frequency:
             self.live = True
             self.head = random_point()
 
-            while any(True for player in self.players if self.head in player.body):
+            while any(True for player in self.players if
+                      self.head in player.body):
                 self.head = random_point()
 
 
@@ -143,9 +145,11 @@ class Player(object, Drawable, KeySensitive, Item):
 
     def update_position(self):
         self.body.append(self.head)
-        self.head = [self.head[0] + self.direction[0], self.head[1] + self.direction[1]]
+        self.head = [self.head[0] + self.direction[0],
+                     self.head[1] + self.direction[1]]
 
-        if (not 0 <= self.head[0] < X_BOARD_SIZE or not 0 <= self.head[1] < Y_BOARD_SIZE) \
+        if (not 0 <= self.head[0] < X_BOARD_SIZE or not 0 <= self.head[
+            1] < Y_BOARD_SIZE) \
                 or self.head in self.body:
             self.live = False
             return
@@ -154,7 +158,8 @@ class Player(object, Drawable, KeySensitive, Item):
         super(Player, self).draw(screen)
 
         for body_element in self.body:
-            screen.fill(self.colour, (body_element[0], body_element[1], DOT_SIZE, DOT_SIZE))
+            screen.fill(self.colour,
+                        (body_element[0], body_element[1], DOT_SIZE, DOT_SIZE))
 
 
 #########################################################
@@ -200,17 +205,22 @@ def init_score_points(players, scores, total_time):
 
 def print_scores(players, scores, screen):
     text_to_display = prepare_text(players, scores)
-    default_font = pygame.font.Font(pygame.font.get_default_font(), FONT_SIZE_1)
+    default_font = pygame.font.Font(pygame.font.get_default_font(),
+                                    FONT_SIZE_1)
 
-    rendered_text = [default_font.render(text, 1, BLACK, BACKGROUND_SCORES) for text in text_to_display]
+    rendered_text = [default_font.render(text, 1, BLACK, BACKGROUND_SCORES)
+                     for text in text_to_display]
     distance = SECTION_HEIGHT / len(rendered_text)
-    for text, y in zip(rendered_text, xrange(Y_BOARD_SIZE + LINE_WIDTH, Y_APPLICATION_SIZE, distance)):
+    for text, y in zip(rendered_text,
+                       xrange(Y_BOARD_SIZE + LINE_WIDTH, Y_APPLICATION_SIZE,
+                              distance)):
         screen.blit(text, (0, y))
 
 
 def prepare_text(players, scores):
     to_display_data = [(-score, player.crossovers, "Player_{}".format(index))
-                       for player, score, index in zip(players, scores, xrange(1, 5))]
+                       for player, score, index in
+                       zip(players, scores, xrange(1, 5))]
     to_display_data.sort()
     return ["{}   Score {}                  Crossovers {}".format(
         player_name, -score, crossover)
