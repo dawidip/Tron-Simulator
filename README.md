@@ -27,7 +27,7 @@ There are following control keys:
     ```
 * Player 4:
     ```
-    i k j l
+    I K J L
     ```
 
 ## Getting Started
