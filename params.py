@@ -39,7 +39,7 @@ FONT_SIZE_2 = 70
 #########################################################
 #                    ITEMS PARAMS                       #
 
-NUMBER_OF_PLAYERS = 3
+NUMBER_OF_PLAYERS = 2
 COLOURS = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (148, 0, 211)]
 CONTROLLERS = [[K_UP, K_DOWN, K_LEFT, K_RIGHT],
                [K_w, K_s, K_a, K_d],
